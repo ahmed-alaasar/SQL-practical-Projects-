@@ -9,13 +9,13 @@ It contains three relational databases that I use to practice, explore, and demo
 ## Databases
 
 ### 1. Company_SD
-![Company SD ERD](ERD/Company_SD_ERD.png)
+![Company SD ERD](Company_SD_ERD.png)
 
 ### 2. ITI
-![ITI ERD](ERD/ITI._ERDpng)
+![ITI ERD](ITI._ERD.png)
 
 ### 3. Third Database
-![Third Database ERD](ERD/AdverntureWorks_ERD.jpg.png)
+![Third Database ERD](AdverntureWorks_ERD.jpg.png)
 
 ## Topics Covered
 
