@@ -18,7 +18,7 @@ It contains three relational databases that I use to practice, explore, and demo
 
 ### 3. AdventureWorks
 
-![AdventureWorks ERD](ERD/AdventureWorks_ERD.jpg)
+![AdventureWorks ERD](ERD/AdverntureWorks_ERD.jpg)
 ## Topics Covered
 
 - Database Design and ERD
