@@ -15,7 +15,7 @@ It contains three relational databases that I use to practice, explore, and demo
 ![ITI ERD](ITI._ERD.png)
 
 ### 3. Third Database
-![Third Database ERD](AdverntureWorks_ERD.jpg.png)
+![Third Database ERD](AdverntureWorks _ERD.jpg)
 
 ## Topics Covered
 
