@@ -38,7 +38,7 @@ It contains three relational databases that I use to practice, explore, and demo
 
 ## Repository Structure
 
-Each database has its own directory, containing organized SQL scripts grouped by topic.
+all database are being queried together , containing organized SQL scripts grouped by topic.
 
 ## Purpose
 
