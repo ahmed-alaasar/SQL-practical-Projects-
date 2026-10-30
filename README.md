@@ -9,14 +9,16 @@ It contains three relational databases that I use to practice, explore, and demo
 ## Databases
 
 ### 1. Company_SD
-![Company SD ERD](Company_SD_ERD.jpg.png)
+
+![Company SD ERD](ERD/Company_SD_ERD.jpg)
 
 ### 2. ITI
-![ITI ERD](ITI_ERD.jpg.png)
 
-### 3.AdverntureWorks
-![Third Database ERD](AdverntureWorks_ERD.jpg.png)
+![ITI ERD](ERD/ITI_ERD.jpg)
 
+### 3. AdventureWorks
+
+![AdventureWorks ERD](ERD/AdventureWorks_ERD.jpg)
 ## Topics Covered
 
 - Database Design and ERD
