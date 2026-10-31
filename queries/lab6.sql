@@ -157,8 +157,27 @@ EXEC sp_bindrule 'Salary_LessThan_2000' ,'Employee.Salary'
 --•	default: NY 
 --•	create a rule for this Data type :values in (NY,DS,KW)) and associate it to the location column
 
+CREATE RULE Loc_r
+AS @value in ('NY','DS','KW')
+
+CREATE DEFAULT Loc_d
+AS 'Ny';
+
+EXEC sp_addtype Loc,'nchar(2)';
+
+EXEC sp_bindrule Loc_r ,'Loc';
+
+EXEC sp_bindefault Loc_d ,'Loc';
+
 
 --10.	Create New table Named newStudent, and use the new UDD (user defined data type) on it.
+CREATE TABLE New_Student(STname VARCHAR(10),STID int, STresidence Loc )
+
+INSERT INTO  New_Student(STname ,STID )
+	VALUES('Ahmed',0001)
+
+SELECT * 
+FROM New_Student
 --a.	Make ID column and don’t make it identity.
 --8.	Create a new sequence for the ID values of the previous table.
 --a.	Insert 3 records in the table using the sequence.
