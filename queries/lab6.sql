@@ -65,27 +65,100 @@ SELECT * FROM #temp_emb
 
  --CREATE VIEW Project_no_emb
  --AS
- SELECT Pname count(Essn)
- FROM Company_SD.dbo.project
 
 
+CREATE VIEW Project_no_emb
+AS 
+SELECT Pname [Project Name], COUNT(W.ESSn)[Number of Employes]
+FROM Project P JOIN Works_for W
+	ON P.Pnumber=W.Pno
+Group BY Pname
 
 
 
 --2.	Create a view named  “v_count “ that will display the project name and the number of hours for each one
---3.	Create a view named   “v_D30” that will display employee number, project number, hours of the projects in department 30. updated
---4.	Create a view named ” v_project_500” that will display the emp no. for the project 500, use the previously created view  “v_D30”
---5.	Delete the views  “v_D30” and “v_count”
---6.	Display the project name that contains the letter “c” Use the previous view created in Q#1
---7.	add new column Enter_Date in Works_for table and insert data in it then create view name “v_2021_check” that will display employee no., which must be from the first of January and the last of December 2021.
---this view will be used to insert data so make sure that the coming new data matchs the condition
 
+CREATE VIEW v_count 
+AS
+SELECT Pname [Project Name], COUNT(W.Hours)[Number of Hours]
+FROM Company_SD.dbo.Project P JOIN Company_SD.dbo.Works_for W
+	ON P.Pnumber=W.Pno
+Group BY Pname
+
+
+
+--3.	Create a view named   “v_D30” that will display employee number, project number,
+--			hours of the projects in department 30. updated
+CREATE VIEW v_D30
+AS
+SELECT
+    W.ESSn AS [Employee Number],
+    W.Pno AS [Project Number],
+    W.Hours AS [Number of Hours]
+FROM Company_SD.dbo.Project P
+JOIN Company_SD.dbo.Works_for W
+    ON P.Pnumber = W.Pno
+WHERE P.Dnum = 30;
+
+--4.	Create a view named ” v_project_500” that will display the emp no. for the project 500, 
+--		use the previously created view  “v_D30”
+CREATE VIEW v_project_500
+AS
+SELECT [Employee Number]  , [Project Number]
+FROM v_D30 
+Where v_D30.[Project Number] = '500'
+
+
+
+--5.	Delete the views  “v_D30” and “v_count”
+DROP VIEW v_D30
+DROP VIEW v_count
+
+
+
+--6.	Display the project name that contains the letter “c” Use the previous view created in Q#1
+
+SELECT P.[Project Name]
+FROM Project_no_emb P
+WHERE P.[Project Name] LIKE '%c%'
+
+
+
+--7.	add new column Enter_Date in Works_for table and insert data in it then create view name “v_2021_check” 
+--		that will display employee no., which must be from the first of January and the last of December 2021.
+--		this view will be used to insert data so make sure that the coming new data matchs the condition
+
+ALTER TABLE Works_for
+ADD  Enter_Date Date
+
+
+SELECT DATA_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Employee'
+AND COLUMN_NAME = 'Bdate';
+
+CREATE VIEW v_2021_check
+AS
+SELECT E.SSn Employee_no,E.Bdate 
+FROM [Company_SD].dbo.Employee E
+WHERE E.Bdate >= '20210101'
+  AND E.Bdate < '20220101';
+  
 --8.	Create Rule for Salary that is less than 2000 using rule.
+Select * from Company_SD.dbo.Employee
+
+CREATE RULE Salary_LessThan_2000 AS @Salary < 2000;
+
+EXEC sp_bindrule 'Salary_LessThan_2000' ,'Employee.Salary'
+
+
 --9.	Create a new user defined data type named loc with the following Criteria:
 --•	nchar(2) -
 --•	default: NY 
 --•	create a rule for this Data type :values in (NY,DS,KW)) and associate it to the location column
---7.	Create New table Named newStudent, and use the new UDD (user defined data type) on it.
+
+
+--10.	Create New table Named newStudent, and use the new UDD (user defined data type) on it.
 --a.	Make ID column and don’t make it identity.
 --8.	Create a new sequence for the ID values of the previous table.
 --a.	Insert 3 records in the table using the sequence.
